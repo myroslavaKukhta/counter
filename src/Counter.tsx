@@ -7,33 +7,32 @@ export type CounterPropsType = {
     startValue: number;
 };
 
-export const Counter: React.FC<CounterPropsType> = ({ maxValue, startValue }) => {
+export const Counter: React.FC<CounterPropsType> = ({maxValue, startValue}) => {
 
-    let [count, setCount] = useState(startValue )
+    let [count, setCount] = useState(startValue)
 
 
-    const incrementHandler = () => {
-        if(count < maxValue) {
+    const onIncrementHandler = () => {
+        if (count < maxValue) {
             setCount(count + 1)
         }
     }
 
-    const resetHandler = () => {
-        setCount(startValue )
+    const onResetHandler = () => {
+        setCount(startValue)
     }
 
     return (
         <div className={s.counter}>
-            <h3 className={s.count}> Count:</h3>
-                <h3 className={count<5?s.count:s.red}>{count}</h3>
+            <h3 className={count < 5 ? s.count : s.red}>{count}</h3>
 
             <div className={s.buttons}>
-                <button onClick={incrementHandler}
+                <button onClick={onIncrementHandler}
                         disabled={count === maxValue}
-                        className={count>maxValue?s.red:s.normal}>
+                        className={count > maxValue ? s.red : s.normal}>
                     Inc
                 </button>
-                <button onClick={resetHandler}
+                <button onClick={onResetHandler}
                         disabled={count === startValue}
                         className={s.red}>
                     Reset
