@@ -6,20 +6,28 @@ import { Setting, SettingPropsType } from './Setting';
 function App() {
     const [count, setCount] = useState(0);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [maxValue, setMaxValue] = useState(10); // Дефолтне максимальне значення
+    const [startValue, setStartValue] = useState(0);
 
-    const onSetHandler: SettingPropsType['onSetHandler'] = (maxValue, startValue) => {
-        if (maxValue < 0 || startValue < 0) {
+    const onSetHandler: SettingPropsType['onSetHandler'] = (newMaxValue, newStartValue) => {
+        if (newMaxValue < 0 || newStartValue < 0 || newStartValue >= newMaxValue) {
             setErrorMessage('Invalid input! Please enter non-negative numbers.');
         } else {
-            setCount(startValue);
+            setMaxValue(newMaxValue);
+            setStartValue(newStartValue);
+            setCount(newStartValue);
             setErrorMessage(null);
         }
     };
-
     return (
         <div className="App">
             <Setting onSetHandler={onSetHandler} />
-            <Counter maxValue={10} startValue={count} errorMessage={errorMessage} count={count} />
+            <Counter
+                maxValue={maxValue}
+                startValue={startValue}
+                errorMessage={errorMessage}
+                count={count}
+            />
         </div>
     );
 }

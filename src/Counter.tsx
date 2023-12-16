@@ -24,7 +24,7 @@ export const Counter: React.FC<CounterPropsType> = ({ maxValue, startValue, erro
     return (
         <div className={s.counter}>
             <h3 className={count < maxValue ? s.count : s.red}>
-                {count >= 0 ? count : errorMessage || 'Введіть значення'}
+                {count >= 0 ? count : errorMessage}
             </h3>
 
             <div className={s.buttons}>
@@ -40,5 +40,5 @@ export const Counter: React.FC<CounterPropsType> = ({ maxValue, startValue, erro
                 </button>
             </div>
         </div>
-    );
+     );
 };
