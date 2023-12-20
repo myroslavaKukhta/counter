@@ -6,6 +6,7 @@ type CounterPropsType = {
     startValue: number;
     errorMessage: string | null;
     count: number;
+    onStartValueChange: (newValue: number) => void;
 };
 
 export const Counter: React.FC<CounterPropsType> = ({ maxValue, startValue, errorMessage, count: initialCount }) => {
